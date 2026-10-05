@@ -15,7 +15,6 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\\theme_supports' );
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_assets' );
 add_action( 'init', __NAMESPACE__ . '\\register_pattern_category' );
 add_action( 'init', __NAMESPACE__ . '\\register_blocks' );
-add_action( 'init', __NAMESPACE__ . '\\register_block_styles' );
 
 /**
  * Block-Themes bringen das meiste mit – hier nur das, was zusätzlich nötig ist.
@@ -45,7 +44,7 @@ function enqueue_assets(): void {
 function register_pattern_category(): void {
 	register_block_pattern_category(
 		'webfire',
-		array( 'label' => __( 'Webfire – Seitenbausteine', 'webfire-starter' ) )
+		array( 'label' => __( 'Webfire Starter', 'webfire-starter' ) )
 	);
 }
 
@@ -56,17 +55,4 @@ function register_blocks(): void {
 	foreach ( glob( get_template_directory() . '/blocks/*/block.json' ) ?: array() as $block_json ) {
 		register_block_type( dirname( $block_json ) );
 	}
-}
-
-/**
- * Kleine Überzeile über Abschnittsüberschriften – als Block-Stil, damit Redakteure sie per Klick setzen.
- */
-function register_block_styles(): void {
-	register_block_style(
-		'core/paragraph',
-		array(
-			'name'  => 'eyebrow',
-			'label' => __( 'Überzeile', 'webfire-starter' ),
-		)
-	);
 }

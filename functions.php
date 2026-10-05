@@ -18,3 +18,4 @@ define( 'WEBFIRE_STARTER_DIR', get_template_directory() );
 require WEBFIRE_STARTER_DIR . '/inc/setup.php';
 require WEBFIRE_STARTER_DIR . '/inc/cleanup.php';
 require WEBFIRE_STARTER_DIR . '/inc/contact-form.php';
+require WEBFIRE_STARTER_DIR . '/inc/projects.php';
