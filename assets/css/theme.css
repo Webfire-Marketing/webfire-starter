@@ -1,0 +1,18 @@
+/* Ergänzungen, die theme.json nicht abbildet. Bewusst kurz halten. */
+
+/* Sprunglink für Tastatur- und Screenreader-Nutzer. */
+.skip-link.screen-reader-text:focus { clip: auto; clip-path: none; height: auto; width: auto; z-index: 100000; padding: 0.75rem 1rem; background: var(--wp--preset--color--ink); color: var(--wp--preset--color--paper); }
+
+/* Dezenter Akzent über Abschnittsüberschriften. */
+.is-style-eyebrow { font-size: var(--wp--preset--font-size--small); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--wp--preset--color--accent-dark); }
+
+/* Karten im Leistungs-Pattern. */
+.wf-card { border-top: 3px solid var(--wp--preset--color--accent); height: 100%; }
+
+/* Bewegung nur, wenn gewünscht. */
+@media (prefers-reduced-motion: no-preference) {
+	.wp-element-button, .wp-block-button__link { transition: background-color 0.2s ease; }
+}
+
+/* Header, Inhalt und Footer liegen direkt aneinander – Abstände regeln die Abschnitte selbst. */
+.wp-site-blocks > * + * { margin-block-start: 0; }
