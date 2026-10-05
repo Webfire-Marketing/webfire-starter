@@ -1,0 +1,36 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "meta": {
+    "title": "Webfire Starter – Demo",
+    "description": "Installiert das Theme mit dem fiktiven Büro Kessler Aho Architekten als Beispielinhalt.",
+    "author": "Webfire Marketing",
+    "categories": [
+      "Theme"
+    ]
+  },
+  "landingPage": "/",
+  "preferredVersions": {
+    "php": "8.2",
+    "wp": "latest"
+  },
+  "login": true,
+  "steps": [
+    {
+      "step": "installTheme",
+      "themeData": {
+        "resource": "git:directory",
+        "url": "https://github.com/Webfire-Marketing/webfire-starter",
+        "ref": "main",
+        "refType": "branch"
+      },
+      "options": {
+        "activate": true,
+        "targetFolderName": "webfire-starter"
+      }
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php\nrequire_once '/wordpress/wp-load.php';\nrequire_once ABSPATH . 'wp-admin/includes/image.php';\n\nif ( get_posts( array( 'post_type' => 'projekt', 'numberposts' => 1 ) ) ) {\n\treturn;\n}\n\nforeach ( array( 1, 2 ) as $default_id ) {\n\twp_delete_post( $default_id, true );\n}\n\n$theme_dir = get_stylesheet_directory();\n\n$import = static function ( string $file, string $alt ) use ( $theme_dir ): int {\n\t$upload = wp_upload_bits( $file, null, file_get_contents( $theme_dir . '/assets/images/' . $file ) );\n\t$id     = wp_insert_attachment(\n\t\tarray(\n\t\t\t'post_mime_type' => 'image/webp',\n\t\t\t'post_title'     => $alt,\n\t\t\t'post_status'    => 'inherit',\n\t\t),\n\t\t$upload['file']\n\t);\n\twp_update_attachment_metadata( $id, wp_generate_attachment_metadata( $id, $upload['file'] ) );\n\tupdate_post_meta( $id, '_wp_attachment_image_alt', $alt );\n\treturn (int) $id;\n};\n\n$p = static fn( string $text ): string => \"<!-- wp:paragraph -->\\n<p>{$text}</p>\\n<!-- /wp:paragraph -->\\n\\n\";\n\n$projects = array(\n\tarray(\n\t\t'title'    => 'Bibliothek in der Scheune',\n\t\t'image'    => 'projekt-1.webp',\n\t\t'ort'      => 'Hilders',\n\t\t'jahr'     => '2024',\n\t\t'leistung' => 'Umbau & Bestand',\n\t\t'excerpt'  => 'Eine Feldscheune von 1890 wird zur Gemeindebibliothek.',\n\t\t'content'  => $p( 'Die Feldscheune am Ortsrand stand fast zwanzig Jahre leer. Statt sie abzureißen, haben wir das Tragwerk aus Eiche saniert und einen hellen Leseraum unter das offene Dach gesetzt.' ) . $p( 'Die neuen Einbauten sind aus heimischer Weißtanne und stehen frei im Raum – so bleibt die Scheune als Scheune lesbar. Geheizt wird mit der Abwärme der benachbarten Hackschnitzelanlage.' ),\n\t),\n\tarray(\n\t\t'title'    => 'Bürohaus am Kanal',\n\t\t'image'    => 'projekt-2.webp',\n\t\t'ort'      => 'Fulda',\n\t\t'jahr'     => '2023',\n\t\t'leistung' => 'Neubau',\n\t\t'excerpt'  => 'Vier Geschosse in Ziegel für ein Ingenieurbüro.',\n\t\t'content'  => $p( 'Für ein Ingenieurbüro mit vierzig Arbeitsplätzen haben wir ein kompaktes Haus aus regionalem Klinker entworfen. Die tiefen Laibungen beschatten die Fenster im Sommer und machen eine außenliegende Verschattung überflüssig.' ) . $p( 'Innen bleiben Decken und Wände roh. Die Haustechnik liegt sichtbar und wartungsfreundlich unter der Decke.' ),\n\t),\n\tarray(\n\t\t'title'    => 'Wohnung Löherstraße',\n\t\t'image'    => 'projekt-3.webp',\n\t\t'ort'      => 'Fulda',\n\t\t'jahr'     => '2023',\n\t\t'leistung' => 'Innenarchitektur',\n\t\t'excerpt'  => 'Altbauwohnung mit eingestellten Möbeln aus Eiche.',\n\t\t'content'  => $p( 'Eine Gründerzeitwohnung mit hohen Decken und kleinen Zimmern. Wir haben zwei Wände entfernt und die Küche als frei stehendes Möbel in den neuen Wohnraum gestellt.' ) . $p( 'Böden, Stuck und Kastenfenster wurden aufgearbeitet, nicht ersetzt.' ),\n\t),\n\tarray(\n\t\t'title'    => 'Kita Sonnenwiese',\n\t\t'image'    => 'projekt-4.webp',\n\t\t'ort'      => 'Petersberg',\n\t\t'jahr'     => '2022',\n\t\t'leistung' => 'Neubau',\n\t\t'excerpt'  => 'Holzbau für fünf Gruppen mit begrüntem Dach.',\n\t\t'content'  => $p( 'Fünf Gruppenräume öffnen sich mit großen Schiebetüren zum Garten. Das Gebäude ist vollständig in Holzrahmenbauweise errichtet und war nach elf Monaten bezugsfertig.' ) . $p( 'Das begrünte Dach hält Regenwasser zurück und ist von der Straße aus als Wiese zu sehen.' ),\n\t),\n\tarray(\n\t\t'title'    => 'Haus am Waldrand',\n\t\t'image'    => 'hero.webp',\n\t\t'ort'      => 'Rhön',\n\t\t'jahr'     => '2021',\n\t\t'leistung' => 'Neubau',\n\t\t'excerpt'  => 'Wohnhaus für eine Familie mit Blick in den Wald.',\n\t\t'content'  => $p( 'Ein langes, schmales Haus, das der Höhenlinie folgt. Alle Wohnräume liegen auf einer Ebene und schauen nach Norden in den Wald, die Nebenräume liegen zur Straße.' ) . $p( 'Die Fassade aus unbehandelter Lärche wird in den nächsten Jahren silbergrau.' ),\n\t),\n);\n\n$date = strtotime( '2026-09-01 10:00:00' );\nforeach ( $projects as $i => $project ) {\n\t$id = wp_insert_post(\n\t\tarray(\n\t\t\t'post_type'    => 'projekt',\n\t\t\t'post_status'  => 'publish',\n\t\t\t'post_title'   => $project['title'],\n\t\t\t'post_excerpt' => $project['excerpt'],\n\t\t\t'post_content' => $project['content'],\n\t\t\t'post_date'    => gmdate( 'Y-m-d H:i:s', $date - $i * DAY_IN_SECONDS ),\n\t\t\t'meta_input'   => array(\n\t\t\t\t'projekt_ort'      => $project['ort'],\n\t\t\t\t'projekt_jahr'     => $project['jahr'],\n\t\t\t\t'projekt_leistung' => $project['leistung'],\n\t\t\t),\n\t\t)\n\t);\n\tset_post_thumbnail( $id, $import( $project['image'], $project['title'] ) );\n}\n\n$pages = array(\n\t'impressum'   => array( 'Impressum', $p( 'Kessler Aho Architekten ist ein fiktives Büro. Diese Seite zeigt, wie das Theme mit einer einfachen Textseite umgeht.' ) ),\n\t'datenschutz' => array( 'Datenschutz', $p( 'Platzhalter für die Datenschutzerklärung. Das Kontaktformular speichert keine Daten in der Datenbank, sondern verschickt sie per E-Mail.' ) ),\n\t'danke'       => array( 'Danke', $p( 'Vielen Dank für Ihre Nachricht. Wir melden uns innerhalb von zwei Werktagen.' ) ),\n);\nforeach ( $pages as $slug => $page ) {\n\twp_insert_post(\n\t\tarray(\n\t\t\t'post_type'    => 'page',\n\t\t\t'post_status'  => 'publish',\n\t\t\t'post_name'    => $slug,\n\t\t\t'post_title'   => $page[0],\n\t\t\t'post_content' => $page[1],\n\t\t)\n\t);\n}\n\nupdate_option( 'blogname', 'Kessler Aho Architekten' );\nupdate_option( 'blogdescription', 'Architektur und Innenarchitektur aus Fulda' );\nupdate_option( 'show_on_front', 'posts' );\nupdate_option( 'permalink_structure', '/%postname%/' );\nflush_rewrite_rules();\n"
+    }
+  ]
+}

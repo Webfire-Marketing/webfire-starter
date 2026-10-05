@@ -1,8 +1,10 @@
 # Webfire Starter
 
-Schlankes WordPress-Block-Theme, mit dem wir bei [Webfire Marketing](https://webfire-marketing.com) neue Kundenprojekte beginnen.
+Ruhiges, redaktionelles WordPress-Block-Theme, mit dem wir bei [Webfire Marketing](https://webfire-marketing.com) Websites für Büros, Studios und Praxen beginnen. Als Beispielinhalt dient das fiktive Architekturbüro *Kessler Aho Architekten*.
 
 Kein Page-Builder, keine Plugin-Abhängigkeiten, kein Build-Step. Das Design-System steckt in `theme.json`, die Inhalte in Patterns, und PHP übernimmt nur, was dort nicht hingehört.
+
+**[▶ Live-Demo im Browser öffnen](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/Webfire-Marketing/webfire-starter/main/blueprint.json)** – startet über WordPress Playground eine komplette WordPress-Installation mit diesem Theme und Demo-Inhalten. Nichts wird installiert, alles läuft im Browser.
 
 ![Screenshot](screenshot.png)
 
@@ -10,10 +12,12 @@ Kein Page-Builder, keine Plugin-Abhängigkeiten, kein Build-Step. Das Design-Sys
 
 | Bereich | Umsetzung |
 |---|---|
-| Design-System | `theme.json`: Farbpalette, fluide Schriftgrößen, Abstands-Skala, Element-Styles für Links, Buttons und Überschriften |
-| Schriften | Public Sans und Source Serif 4 als Variable Fonts, **lokal gehostet** (kein Google-Fonts-Request, DSGVO-freundlich) |
-| Templates | `index`, `front-page`, `page`, `single`, `404` als Block-Templates, Header und Footer als Template-Parts |
-| Patterns | Hero, Leistungen (bewusst asymmetrisch: eine Hauptleistung, zwei Ergänzungen), FAQ mit `details`, Kontakt, komplette Startseite |
+| Design-System | `theme.json`: zurückhaltende Palette, fluide Schriftgrößen, Abstands-Skala, Element-Styles für Links, Buttons und Überschriften |
+| Schriften | Newsreader und Inter Tight als Variable Fonts, **lokal gehostet** (kein Google-Fonts-Request, DSGVO-freundlich) |
+| Inhaltstyp „Projekte“ | `inc/projects.php`: Custom Post Type mit Archiv unter `/projekte/`, Meta-Felder Ort, Jahr und Leistung |
+| Block Bindings | Die Meta-Felder werden in Templates und Patterns über `core/post-meta` ausgegeben – ohne ACF, Shortcodes oder eigene Blöcke |
+| Templates | `front-page`, `archive-projekt`, `single-projekt`, `page`, `page-no-title`, `single`, `index`, `404` |
+| Patterns | Hero, Projekt-Raster (Query Loop), Büro, Leistungen, Kontakt, komplette Startseite; Header, Footer und 404 als Patterns, damit Links über `home_url()` auch in Unterordner-Installationen stimmen |
 | Eigener Block | `webfire/kontaktformular`: serverseitig gerendert, Einstellungen in der Seitenleiste, ohne Build-Step |
 | Formular-Backend | `inc/contact-form.php`: Nonce, Honeypot, Zeitfalle statt Captcha, Validierung, `wp_mail()`, Redirect auf eine Danke-Seite (für saubere Conversion-Messung), Schutz vor offenen Redirects |
 | Aufräumen | `inc/cleanup.php`: Emoji-Skripte, Generator-Tag und XML-RPC aus, Autoren-Archive umgeleitet – jeder Eingriff einzeln kommentiert |
@@ -24,25 +28,32 @@ Kein Page-Builder, keine Plugin-Abhängigkeiten, kein Build-Step. Das Design-Sys
 webfire-starter/
 ├── assets/
 │   ├── css/theme.css          # nur, was theme.json nicht abbildet
-│   └── fonts/                 # Variable Fonts + Lizenzen
+│   ├── fonts/                 # Variable Fonts + Lizenzen
+│   └── images/                # Demo-Bilder (WebP)
 ├── blocks/kontaktformular/    # block.json, render.php, index.js, style.css
 ├── inc/
 │   ├── setup.php              # Supports, Assets, Block- und Pattern-Registrierung
+│   ├── projects.php           # Inhaltstyp „Projekte“ + Meta-Felder
 │   ├── cleanup.php
 │   └── contact-form.php
 ├── parts/                     # header.html, footer.html
-├── patterns/                  # hero, leistungen, faq, kontakt, startseite
+├── patterns/
 ├── templates/
+├── blueprint.json             # Demo-Setup für WordPress Playground
 ├── functions.php
 ├── style.css
 └── theme.json
 ```
 
-## Installation
+## Lokal ansehen
+
+**Im Browser (am schnellsten):** Link „Live-Demo“ oben öffnen. Playground lädt das Theme direkt aus diesem Repository, legt fünf Beispielprojekte, Impressum, Datenschutz und Danke-Seite an und meldet dich im Backend an.
+
+**In einer lokalen WordPress-Installation** (z. B. mit [Local](https://localwp.com)):
 
 1. Ordner `webfire-starter` nach `wp-content/themes/` kopieren (oder als ZIP über *Design → Themes → Hochladen*).
-2. Theme aktivieren.
-3. Neue Seite anlegen → WordPress bietet das Pattern **„Startseite komplett“** an.
+2. Theme aktivieren und unter *Einstellungen → Permalinks* einmal speichern.
+3. Unter *Projekte* ein paar Einträge mit Beitragsbild anlegen; Ort, Jahr und Leistung pflegst du im Bereich *Individuelle Felder* (im Editor unter *Optionen → Einstellungen → Bedienfelder* einblenden).
 4. Seite `/danke/` anlegen – dorthin leitet das Kontaktformular nach dem Absenden weiter.
 5. Empfänger der Anfragen ist die Admin-E-Mail. Anpassen per Filter:
 
@@ -55,10 +66,12 @@ Voraussetzungen: WordPress 6.5+, PHP 8.1+.
 ## Entscheidungen
 
 - **Block-Theme statt Classic Theme:** Kunden pflegen Inhalte im Editor, ohne dass ein Page-Builder Ladezeit und Abhängigkeiten mitbringt.
+- **Block Bindings statt ACF:** Seit WordPress 6.5 lassen sich Meta-Felder direkt an Absatz-Blöcke binden. Das spart ein Plugin und bleibt im Editor sichtbar.
 - **Kein Build-Step:** Der Block nutzt die WordPress-Globals direkt. Das hält das Theme wartbar, auch für Leute, die kein Node-Setup haben.
 - **Danke-Seite statt Inline-Meldung:** Eine eigene URL nach dem Absenden macht Anfragen in Analytics zuverlässig messbar.
 - **Spam-Schutz ohne Captcha:** Honeypot und Zeitfalle halten die meisten Bots fern, ohne echte Besucher zu nerven oder Drittanbieter einzubinden.
+- **Inhaltstyp im Theme:** Bei Kundenprojekten gehört ein Post Type in ein Plugin, damit Inhalte einen Theme-Wechsel überleben. Für dieses Starter-Theme bleibt alles bewusst an einem Ort.
 
 ## Lizenz
 
-GPL-2.0-or-later. Schriften: SIL Open Font License 1.1.
+GPL-2.0-or-later. Schriften: SIL Open Font License 1.1. Demo-Bilder sind KI-generiert und dürfen frei mit dem Theme verwendet werden.
