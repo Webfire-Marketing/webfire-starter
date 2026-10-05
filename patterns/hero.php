@@ -24,7 +24,7 @@
 			<p class="has-contrast-2-color has-text-color"><?php esc_html_e( 'Kessler Aho ist ein Architekturbüro aus Fulda. Seit 2011 planen wir Wohnhäuser, Umbauten und öffentliche Gebäude in Osthessen und der Rhön.', 'webfire-starter' ); ?></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"className":"wfs-arrow","fontSize":"small"} -->
-			<p class="wfs-arrow has-small-font-size"><a href="#kontakt"><?php esc_html_e( 'Projekt anfragen', 'webfire-starter' ); ?></a></p>
+			<p class="wfs-arrow has-small-font-size"><a href="<?php echo esc_url( home_url( '/kontakt/' ) ); ?>"><?php esc_html_e( 'Projekt anfragen', 'webfire-starter' ); ?></a></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->

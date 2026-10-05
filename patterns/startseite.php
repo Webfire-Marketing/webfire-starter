@@ -1,12 +1,12 @@
 <?php
 /**
- * Title: Startseite komplett
+ * Title: Onepager komplett
  * Slug: webfire-starter/startseite
  * Categories: webfire
  * Block Types: core/post-content
  * Post Types: page
  * Viewport Width: 1400
- * Description: Einstieg, Projekte, Büro, Leistungen und Kontakt als Ausgangspunkt für eine neue Startseite.
+ * Description: Alles auf einer Seite mit Sprungmarken – für kleine Projekte. Die Navigation dann auf #buero, #leistungen und #kontakt zeigen lassen.
  */
 ?>
 <!-- wp:pattern {"slug":"webfire-starter/hero"} /-->

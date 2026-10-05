@@ -4,33 +4,37 @@
 	<!-- wp:columns {"verticalAlignment":"bottom"} -->
 	<div class="wp-block-columns are-vertically-aligned-bottom">
 		<!-- wp:column {"verticalAlignment":"bottom","width":"66%"} --><div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:66%">
-			<!-- wp:heading {"level":1,"style":{"typography":{"fontWeight":"300"}}} --><h1 class="wp-block-heading" style="font-weight:300">Projekte</h1><!-- /wp:heading -->
+			<!-- wp:heading {"level":1,"style":{"typography":{"fontWeight":"300"}}} --><h1 class="wp-block-heading" style="font-weight:300">Journal</h1><!-- /wp:heading -->
 		</div><!-- /wp:column -->
 		<!-- wp:column {"verticalAlignment":"bottom","width":"34%"} --><div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:34%">
-			<!-- wp:paragraph {"textColor":"contrast-2"} --><p class="has-contrast-2-color has-text-color">Neubauten, Umbauten und Innenräume aus den letzten Jahren.</p><!-- /wp:paragraph -->
+			<!-- wp:paragraph {"textColor":"contrast-2"} --><p class="has-contrast-2-color has-text-color">Notizen aus dem Büro und von der Baustelle – über Materialien, Projekte und Menschen.</p><!-- /wp:paragraph -->
 		</div><!-- /wp:column -->
 	</div>
 	<!-- /wp:columns -->
-	<!-- wp:pattern {"slug":"webfire-starter/projekt-filter"} /-->
-	<!-- wp:query {"queryId":21,"query":{"perPage":12,"postType":"projekt","inherit":true}} -->
+	<!-- wp:categories {"className":"wfs-filter","fontSize":"small"} /-->
+	<!-- wp:query {"queryId":51,"query":{"perPage":9,"postType":"post","inherit":true}} -->
 	<div class="wp-block-query">
-		<!-- wp:post-template {"style":{"spacing":{"blockGap":"var:preset|spacing|50"}},"layout":{"type":"grid","columnCount":2}} -->
+		<!-- wp:post-template {"style":{"spacing":{"blockGap":"var:preset|spacing|50"}},"layout":{"type":"grid","columnCount":3}} -->
 			<!-- wp:group {"className":"wfs-project","style":{"spacing":{"blockGap":"0.6rem"}},"layout":{"type":"default"}} -->
 			<div class="wp-block-group wfs-project">
-				<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/3","sizeSlug":"large"} /-->
-				<!-- wp:post-title {"level":2,"isLink":true,"fontSize":"large","style":{"spacing":{"margin":{"top":"var:preset|spacing|20"}}}} /-->
-				<!-- wp:group {"className":"wfs-meta","textColor":"contrast-2","fontSize":"small","layout":{"type":"default"}} -->
-				<div class="wp-block-group wfs-meta has-contrast-2-color has-text-color has-small-font-size">
-					<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"core/post-meta","args":{"key":"projekt_ort"}}}}} --><p></p><!-- /wp:paragraph -->
-					<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"core/post-meta","args":{"key":"projekt_jahr"}}}}} --><p></p><!-- /wp:paragraph -->
+				<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"3/2","sizeSlug":"large"} /-->
+				<!-- wp:group {"className":"wfs-meta","textColor":"contrast-2","fontSize":"small","style":{"spacing":{"margin":{"top":"var:preset|spacing|20"}}},"layout":{"type":"default"}} -->
+				<div class="wp-block-group wfs-meta has-contrast-2-color has-text-color has-small-font-size" style="margin-top:var(--wp--preset--spacing--20)">
+					<!-- wp:post-date {"format":"j. F Y"} /-->
+					<!-- wp:post-terms {"term":"category"} /-->
 				</div>
 				<!-- /wp:group -->
+				<!-- wp:post-title {"level":2,"isLink":true,"fontSize":"large"} /-->
+				<!-- wp:post-excerpt {"excerptLength":22,"textColor":"contrast-2"} /-->
 			</div>
 			<!-- /wp:group -->
 		<!-- /wp:post-template -->
 		<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"}} -->
 			<!-- wp:query-pagination-previous /--><!-- wp:query-pagination-numbers /--><!-- wp:query-pagination-next /-->
 		<!-- /wp:query-pagination -->
+		<!-- wp:query-no-results -->
+			<!-- wp:paragraph --><p>Hier gibt es noch keine Beiträge.</p><!-- /wp:paragraph -->
+		<!-- /wp:query-no-results -->
 	</div>
 	<!-- /wp:query -->
 </main>

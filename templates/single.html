@@ -1,10 +1,22 @@
 <!-- wp:template-part {"slug":"header","area":"header"} /-->
-<!-- wp:group {"tagName":"main","anchor":"inhalt","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
-<main class="wp-block-group" id="inhalt" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">
-	<!-- wp:post-date {"fontSize":"small"} /-->
-	<!-- wp:post-title {"level":1,"style":{"typography":{"fontWeight":"300"}}} /-->
-	<!-- wp:post-featured-image {"align":"wide"} /-->
+<!-- wp:group {"tagName":"main","anchor":"inhalt","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60"},"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group alignfull" id="inhalt" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--60)">
+	<!-- wp:group {"className":"wfs-meta","textColor":"contrast-2","fontSize":"small","layout":{"type":"default"}} -->
+	<div class="wp-block-group wfs-meta has-contrast-2-color has-text-color has-small-font-size">
+		<!-- wp:post-date {"format":"j. F Y"} /-->
+		<!-- wp:post-terms {"term":"category"} /-->
+	</div>
+	<!-- /wp:group -->
+	<!-- wp:post-title {"level":1,"style":{"typography":{"fontWeight":"300"}},"fontSize":"xx-large"} /-->
+	<!-- wp:post-excerpt {"fontSize":"large","textColor":"contrast-2"} /-->
+	<!-- wp:post-featured-image {"align":"wide","aspectRatio":"16/9"} /-->
 	<!-- wp:post-content {"layout":{"type":"constrained"}} /-->
+	<!-- wp:group {"align":"wide","style":{"border":{"top":{"color":"var:preset|color|line","width":"1px"}},"spacing":{"padding":{"top":"var:preset|spacing|30"},"margin":{"top":"var:preset|spacing|50"}}},"layout":{"type":"flex","justifyContent":"space-between"}} -->
+	<div class="wp-block-group alignwide" style="border-top-color:var(--wp--preset--color--line);border-top-width:1px;margin-top:var(--wp--preset--spacing--50);padding-top:var(--wp--preset--spacing--30)">
+		<!-- wp:post-navigation-link {"type":"previous","showTitle":true,"arrow":"arrow"} /-->
+		<!-- wp:post-navigation-link {"showTitle":true,"arrow":"arrow"} /-->
+	</div>
+	<!-- /wp:group -->
 </main>
 <!-- /wp:group -->
 <!-- wp:template-part {"slug":"footer","area":"footer"} /-->

@@ -29,3 +29,50 @@
 .wfs-facts .wp-block-column > * + * {
 	margin-block-start: 0.25rem;
 }
+
+/* Filterzeile (Projekte nach Leistung, Journal nach Kategorie). */
+.wfs-filter, ul.wfs-filter { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0; }
+.wfs-filter a { display: inline-block; padding: 0.35rem 0.9rem; border: 1px solid var(--wp--preset--color--line); border-radius: 999px; text-decoration: none; }
+.wfs-filter a:hover, .wfs-filter a[aria-current], .wfs-filter .current-cat > a { border-color: var(--wp--preset--color--contrast); }
+.wfs-filter a[aria-current], .wfs-filter .current-cat > a { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
+
+/* Navigation: Untermenü ruhig halten, „Kontakt“ als Pill. */
+.wfs-nav .wp-block-navigation__submenu-container { background: var(--wp--preset--color--base) !important; border: 1px solid var(--wp--preset--color--line) !important; padding: 0.5rem 0; min-width: 14rem !important; }
+.wfs-nav .wp-block-navigation__submenu-container a { padding: 0.4rem 1rem !important; }
+.wfs-nav a { text-decoration: none; }
+.wfs-nav a:hover { text-decoration: underline; }
+@media (min-width: 600px) {
+	.wfs-nav .wfs-nav-cta > a { border: 1px solid currentColor; border-radius: 999px; padding: 0.3rem 0.9rem; }
+	.wfs-nav .wfs-nav-cta > a:hover { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); text-decoration: none; }
+}
+
+/* Leistungszeilen mit Link: ganze Zeile reagiert. */
+.wfs-row--link h3 a { text-decoration: none; }
+.wfs-row--link h3 a::after { content: " →"; opacity: 0; transition: opacity 0.2s ease; }
+.wfs-row--link:hover h3 a::after { opacity: 1; }
+
+/* Stellenanzeigen als aufklappbare Zeilen. */
+.wfs-job { border-top: 1px solid var(--wp--preset--color--line); padding: var(--wp--preset--spacing--30) 0; }
+.wfs-job:last-child { border-bottom: 1px solid var(--wp--preset--color--line); }
+.wfs-job summary { cursor: pointer; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 2rem; list-style: none; }
+.wfs-job summary::-webkit-details-marker { display: none; }
+.wfs-job__title { font-family: var(--wp--preset--font-family--heading); font-size: var(--wp--preset--font-size--large); }
+.wfs-job__meta { color: var(--wp--preset--color--contrast-2); font-size: var(--wp--preset--font-size--small); align-self: center; }
+.wfs-job[open] summary { margin-bottom: 1rem; }
+.wfs-job > :not(summary) { max-width: 680px; }
+
+/* Rückverweis über Seitentiteln („← Leistungen“). */
+.wfs-back a { text-decoration: none; }
+
+/* Fließtext: Zwischenüberschriften mit Luft nach oben. */
+.wp-block-post-content :where(h2, h3) { margin-block-start: var(--wp--preset--spacing--40); }
+
+/* Stellen: Plus/Minus als Hinweis, dass sich die Zeile öffnen lässt. */
+.wfs-job summary::after { content: "+"; font-size: 1.25rem; line-height: 1; align-self: center; }
+.wfs-job[open] summary::after { content: "–"; }
+.wfs-job__meta { margin-left: auto; }
+
+/* Team auf kleinen Bildschirmen zweispaltig statt riesiger Einzelfotos. */
+@media (max-width: 781px) {
+	.wfs-team .wp-block-post-template.is-layout-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}

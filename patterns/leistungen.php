@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Leistungen als Liste
+ * Title: Leistungen als Liste (Onepager)
  * Slug: webfire-starter/leistungen
  * Categories: webfire, services
  * Keywords: leistungen, angebot, services
