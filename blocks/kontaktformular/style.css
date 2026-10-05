@@ -1,15 +1,19 @@
-.wf-form { display: grid; gap: 1rem; max-width: 40rem; }
-.wf-form__row { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
-.wf-form__field { display: grid; gap: 0.35rem; margin: 0; }
-.wf-form label { font-size: var(--wp--preset--font-size--small); font-weight: 600; }
+.wf-form { display: grid; gap: 1.25rem; }
+.wf-form__row { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.wf-form__field { display: grid; gap: 0.4rem; margin: 0; }
+.wf-form label { font-size: var(--wp--preset--font-size--small); }
 .wf-form input[type="text"], .wf-form input[type="email"], .wf-form input[type="tel"], .wf-form textarea {
-	box-sizing: border-box; width: 100%; padding: 0.75rem 0.9rem; font: inherit; color: inherit;
-	background: #fff; border: 1px solid var(--wp--preset--color--line); border-radius: 4px;
+	box-sizing: border-box; width: 100%; padding: 0.7rem 0; font: inherit; color: inherit;
+	background: transparent; border: 0; border-bottom: 1px solid currentColor; border-radius: 0;
 }
-.wf-form input:focus-visible, .wf-form textarea:focus-visible { outline: 2px solid var(--wp--preset--color--accent); outline-offset: 1px; border-color: transparent; }
-.wf-form__consent { display: flex; gap: 0.6rem; align-items: flex-start; margin: 0; }
-.wf-form__consent input { margin-top: 0.3rem; flex: none; }
-.wf-form__consent label { font-weight: 400; }
-.wf-form__notice { margin: 0; padding: 0.8rem 1rem; border-left: 3px solid var(--wp--preset--color--accent); background: var(--wp--preset--color--surface); }
-.wf-form__submit { margin: 0; }
+.wf-form textarea { resize: vertical; min-height: 7rem; }
+.wf-form input:focus-visible, .wf-form textarea:focus-visible { outline: none; border-bottom-width: 2px; }
+.wf-form__consent { display: flex; gap: 0.6rem; align-items: flex-start; margin: 0; font-size: var(--wp--preset--font-size--small); opacity: 0.85; }
+.wf-form__consent input { margin-top: 0.3rem; flex: none; accent-color: currentColor; }
+.wf-form__notice { margin: 0; padding: 0.8rem 1rem; border: 1px solid currentColor; }
+.wf-form__submit { margin: 0.5rem 0 0; }
 .wf-form__hp { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* Auf dunklem Hintergrund den Button umkehren. */
+.has-contrast-background-color .wf-form .wp-element-button { background: var(--wp--preset--color--base); color: var(--wp--preset--color--contrast); }
+.has-contrast-background-color .wf-form .wp-element-button:hover { background: var(--wp--preset--color--base-2); }

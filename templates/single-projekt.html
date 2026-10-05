@@ -1,0 +1,31 @@
+<!-- wp:template-part {"slug":"header","area":"header"} /-->
+<!-- wp:group {"tagName":"main","anchor":"inhalt","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60"},"blockGap":"var:preset|spacing|50"}},"layout":{"type":"constrained","contentSize":"1320px"}} -->
+<main class="wp-block-group alignfull" id="inhalt" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--60)">
+	<!-- wp:post-title {"level":1,"style":{"typography":{"fontWeight":"300"}}} /-->
+	<!-- wp:columns {"isStackedOnMobile":false,"className":"wfs-facts","style":{"border":{"top":{"color":"var:preset|color|line","width":"1px"}},"spacing":{"padding":{"top":"var:preset|spacing|20"}}},"fontSize":"small"} -->
+	<div class="wp-block-columns is-not-stacked-on-mobile wfs-facts has-small-font-size" style="border-top-color:var(--wp--preset--color--line);border-top-width:1px;padding-top:var(--wp--preset--spacing--20)">
+		<!-- wp:column --><div class="wp-block-column">
+			<!-- wp:paragraph {"textColor":"contrast-2"} --><p class="has-contrast-2-color has-text-color">Leistung</p><!-- /wp:paragraph -->
+			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"core/post-meta","args":{"key":"projekt_leistung"}}}}} --><p></p><!-- /wp:paragraph -->
+		</div><!-- /wp:column -->
+		<!-- wp:column --><div class="wp-block-column">
+			<!-- wp:paragraph {"textColor":"contrast-2"} --><p class="has-contrast-2-color has-text-color">Ort</p><!-- /wp:paragraph -->
+			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"core/post-meta","args":{"key":"projekt_ort"}}}}} --><p></p><!-- /wp:paragraph -->
+		</div><!-- /wp:column -->
+		<!-- wp:column --><div class="wp-block-column">
+			<!-- wp:paragraph {"textColor":"contrast-2"} --><p class="has-contrast-2-color has-text-color">Fertigstellung</p><!-- /wp:paragraph -->
+			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"core/post-meta","args":{"key":"projekt_jahr"}}}}} --><p></p><!-- /wp:paragraph -->
+		</div><!-- /wp:column -->
+	</div>
+	<!-- /wp:columns -->
+	<!-- wp:post-featured-image {"align":"wide","aspectRatio":"16/9"} /-->
+	<!-- wp:post-content {"layout":{"type":"constrained"}} /-->
+	<!-- wp:group {"style":{"border":{"top":{"color":"var:preset|color|line","width":"1px"}},"spacing":{"padding":{"top":"var:preset|spacing|30"}}},"layout":{"type":"flex","justifyContent":"space-between"}} -->
+	<div class="wp-block-group" style="border-top-color:var(--wp--preset--color--line);border-top-width:1px;padding-top:var(--wp--preset--spacing--30)">
+		<!-- wp:post-navigation-link {"type":"previous","showTitle":true,"label":"← "} /-->
+		<!-- wp:post-navigation-link {"showTitle":true,"label":" →"} /-->
+	</div>
+	<!-- /wp:group -->
+</main>
+<!-- /wp:group -->
+<!-- wp:template-part {"slug":"footer","area":"footer"} /-->
