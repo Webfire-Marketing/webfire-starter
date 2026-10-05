@@ -5,7 +5,7 @@
  * Categories: webfire
  * Keywords: projekte, portfolio, referenzen
  * Viewport Width: 1400
- * Description: Die vier neuesten Projekte als Raster – Daten kommen aus dem Inhaltstyp „Projekte“.
+ * Description: Die vier neuesten Projekte als Raster.
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"},"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained","contentSize":"1320px"}} -->

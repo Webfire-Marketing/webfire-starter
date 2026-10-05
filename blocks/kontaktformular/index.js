@@ -1,6 +1,6 @@
 /**
- * Editor-Seite des Kontaktformulars – ohne Build-Step, nur mit WordPress-Globals.
- * Vorschau kommt vom Server (render.php), Einstellungen sitzen in der Seitenleiste.
+ * Editor-Script für das Kontaktformular. Kein Build-Step, nutzt die wp.*-Globals.
+ * Vorschau per ServerSideRender (render.php).
  */
 ( function ( wp ) {
 	const { registerBlockType } = wp.blocks;

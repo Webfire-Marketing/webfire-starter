@@ -1,9 +1,6 @@
 <?php
 /**
- * Webfire Starter – Theme-Setup.
- *
- * Bewusst schlank: Design-Entscheidungen liegen in theme.json, Inhalte in
- * Patterns. PHP kümmert sich nur um das, was dort nicht hingehört.
+ * Webfire Starter
  *
  * @package WebfireStarter
  */

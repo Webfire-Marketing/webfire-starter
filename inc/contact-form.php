@@ -1,12 +1,8 @@
 <?php
 /**
- * Verarbeitung des Kontaktformular-Blocks (webfire/kontaktformular).
- *
- * Ablauf: Formular -> admin-post.php -> Prüfung -> wp_mail() -> Redirect auf die Danke-Seite.
- * Die Danke-Seite ist Absicht: Sie macht Anfragen in Analytics als eigenes Ziel messbar.
- *
- * Spam-Schutz ohne Captcha: Nonce, Honeypot-Feld und Mindest-Ausfüllzeit.
- * Es werden keine Anfragen in der Datenbank gespeichert.
+ * Kontaktformular: admin-post.php -> prüfen -> wp_mail() -> Redirect auf /danke/.
+ * Eigene Danke-Seite, damit Anfragen in GA4 als Ziel messbar sind.
+ * Spamschutz: Nonce, Honeypot, Mindestzeit. Nichts wird in der DB gespeichert.
  *
  * @package WebfireStarter
  */
@@ -25,7 +21,7 @@ add_action( 'admin_post_nopriv_' . ACTION, __NAMESPACE__ . '\\handle' );
 add_action( 'admin_post_' . ACTION, __NAMESPACE__ . '\\handle' );
 
 /**
- * Nimmt das Formular entgegen, prüft es und verschickt die Mail.
+ * Handler für admin-post.
  */
 function handle(): void {
 	$back = wp_get_referer() ?: home_url( '/' );
@@ -34,12 +30,12 @@ function handle(): void {
 		redirect_with_status( $back, 'expired' );
 	}
 
-	// Honeypot: Menschen sehen dieses Feld nicht und lassen es leer.
+	// Honeypot
 	if ( ! empty( $_POST['website'] ) ) {
-		redirect_with_status( resolve_thank_you_url(), 'ok' ); // Bots bekommen kein Signal, dass sie erkannt wurden.
+		redirect_with_status( resolve_thank_you_url(), 'ok' ); // Bot bekommt trotzdem "ok"
 	}
 
-	// Zeitfalle: Wer das Formular in unter drei Sekunden abschickt, ist sehr wahrscheinlich kein Mensch.
+	// unter MIN_SECONDS abgeschickt = vermutlich Bot
 	$started = isset( $_POST['_wfstart'] ) ? (int) $_POST['_wfstart'] : 0;
 	if ( $started <= 0 || ( time() - $started ) < MIN_SECONDS ) {
 		redirect_with_status( $back, 'error' );
@@ -59,7 +55,7 @@ function handle(): void {
 	}
 
 	/**
-	 * Empfänger der Anfragen. Standard: Admin-E-Mail der Website.
+	 * Empfänger, Standard ist die Admin-Mail.
 	 *
 	 * @param string $recipient E-Mail-Adresse.
 	 */
@@ -90,10 +86,10 @@ function handle(): void {
 }
 
 /**
- * Pflichtfelder und Formate prüfen.
+ * Validierung.
  *
  * @param array<string, mixed> $data Bereinigte Eingaben.
- * @return string[] Fehlercodes, leer wenn alles passt.
+ * @return string[] Fehlercodes
  */
 function validate( array $data ): array {
 	$errors = array();
@@ -115,8 +111,7 @@ function validate( array $data ): array {
 }
 
 /**
- * Danke-Seite aus dem Block-Attribut, sonst /danke/.
- * Nur Ziele auf der eigenen Domain sind erlaubt (kein offener Redirect).
+ * Danke-URL aus dem Block, Fallback /danke/. Nur eigene Domain (kein Open Redirect).
  */
 function resolve_thank_you_url(): string {
 	$requested = isset( $_POST['_wfthanks'] ) ? esc_url_raw( wp_unslash( $_POST['_wfthanks'] ) ) : '';
@@ -126,7 +121,7 @@ function resolve_thank_you_url(): string {
 }
 
 /**
- * Leitet weiter und hängt einen Status an, den der Block als Hinweis anzeigt.
+ * Redirect mit ?kontakt=status für die Meldung im Block.
  *
  * @return never
  */

@@ -1,6 +1,6 @@
 <?php
 /**
- * Server-Render des Kontaktformulars.
+ * Frontend-Ausgabe Kontaktformular.
  *
  * @var array<string, mixed> $attributes Block-Attribute.
  *

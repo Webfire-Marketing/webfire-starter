@@ -1,42 +1,40 @@
-/* Ergänzungen, die theme.json (noch) nicht abbildet. Bewusst kurz gehalten. */
+/* Nur was theme.json nicht kann. */
 
-/* Header, Inhalt und Footer liegen direkt aneinander – Abstände regeln die Abschnitte selbst. */
+/* Kein Abstand zwischen Header, Main, Footer, das machen die Sektionen. */
 .wp-site-blocks > * + * { margin-block-start: 0; }
 
-/* Sprunglink für Tastatur- und Screenreader-Nutzer. */
+/* Skip-Link */
 .skip-link.screen-reader-text:focus { clip: auto; clip-path: none; height: auto; width: auto; z-index: 100000; padding: 0.75rem 1rem; background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
 
-/* Projektkacheln: Bild leicht vergrößern beim Hover, Titel ohne Unterstreichung. */
+/* Projektkacheln */
 .wfs-project .wp-block-post-featured-image { overflow: hidden; }
 .wfs-project .wp-block-post-featured-image img { transition: transform 0.6s ease; }
 .wfs-project:hover .wp-block-post-featured-image img { transform: scale(1.025); }
 @media (prefers-reduced-motion: reduce) { .wfs-project .wp-block-post-featured-image img { transition: none; } }
 
-/* Meta-Zeile unter Projekten: Ort · Jahr. */
+/* Ort · Jahr */
 .wfs-meta { display: flex; gap: 0.5rem; }
 .wfs-meta > * { margin: 0 !important; }
 .wfs-meta > * + *::before { content: "·"; margin-right: 0.5rem; }
 
-/* Leistungsliste: Nummer, Titel, Text als Zeile mit Trennlinie. */
 .wfs-row { border-top: 1px solid var(--wp--preset--color--line); }
 
-/* Pfeil-Links („Alle Projekte →“). */
+/* Pfeil-Links */
 .wfs-arrow a { text-decoration: none; }
 .wfs-arrow a::after { content: " →"; transition: margin 0.2s ease; }
 .wfs-arrow a:hover::after { margin-left: 0.25rem; }
 
-/* Projekt-Steckbrief: Label und Wert eng beieinander */
 .wfs-facts .wp-block-column > * + * {
 	margin-block-start: 0.25rem;
 }
 
-/* Filterzeile (Projekte nach Leistung, Journal nach Kategorie). */
+/* Filter (Projekte, Journal) */
 .wfs-filter, ul.wfs-filter { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0; }
 .wfs-filter a { display: inline-block; padding: 0.35rem 0.9rem; border: 1px solid var(--wp--preset--color--line); border-radius: 999px; text-decoration: none; }
 .wfs-filter a:hover, .wfs-filter a[aria-current], .wfs-filter .current-cat > a { border-color: var(--wp--preset--color--contrast); }
 .wfs-filter a[aria-current], .wfs-filter .current-cat > a { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
 
-/* Navigation: Untermenü ruhig halten, „Kontakt“ als Pill. */
+/* Navigation */
 .wfs-nav .wp-block-navigation__submenu-container { background: var(--wp--preset--color--base) !important; border: 1px solid var(--wp--preset--color--line) !important; padding: 0.5rem 0; min-width: 14rem !important; }
 .wfs-nav .wp-block-navigation__submenu-container a { padding: 0.4rem 1rem !important; }
 .wfs-nav a { text-decoration: none; }
@@ -46,12 +44,11 @@
 	.wfs-nav .wfs-nav-cta > a:hover { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); text-decoration: none; }
 }
 
-/* Leistungszeilen mit Link: ganze Zeile reagiert. */
 .wfs-row--link h3 a { text-decoration: none; }
 .wfs-row--link h3 a::after { content: " →"; opacity: 0; transition: opacity 0.2s ease; }
 .wfs-row--link:hover h3 a::after { opacity: 1; }
 
-/* Stellenanzeigen als aufklappbare Zeilen. */
+/* Stellen */
 .wfs-job { border-top: 1px solid var(--wp--preset--color--line); padding: var(--wp--preset--spacing--30) 0; }
 .wfs-job:last-child { border-bottom: 1px solid var(--wp--preset--color--line); }
 .wfs-job summary { cursor: pointer; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 2rem; list-style: none; }
@@ -61,18 +58,15 @@
 .wfs-job[open] summary { margin-bottom: 1rem; }
 .wfs-job > :not(summary) { max-width: 680px; }
 
-/* Rückverweis über Seitentiteln („← Leistungen“). */
 .wfs-back a { text-decoration: none; }
 
-/* Fließtext: Zwischenüberschriften mit Luft nach oben. */
 .wp-block-post-content :where(h2, h3) { margin-block-start: var(--wp--preset--spacing--40); }
 
-/* Stellen: Plus/Minus als Hinweis, dass sich die Zeile öffnen lässt. */
 .wfs-job summary::after { content: "+"; font-size: 1.25rem; line-height: 1; align-self: center; }
 .wfs-job[open] summary::after { content: "–"; }
 .wfs-job__meta { margin-left: auto; }
 
-/* Team auf kleinen Bildschirmen zweispaltig statt riesiger Einzelfotos. */
+/* Team mobil 2-spaltig */
 @media (max-width: 781px) {
 	.wfs-team .wp-block-post-template.is-layout-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
 }

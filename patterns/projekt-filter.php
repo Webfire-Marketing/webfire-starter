@@ -27,5 +27,5 @@ foreach ( is_array( $terms ) ? $terms : array() as $term ) {
 }
 ?>
 <!-- wp:paragraph {"className":"wfs-filter","fontSize":"small"} -->
-<p class="wfs-filter has-small-font-size"><?php echo implode( ' ', $links ); // phpcs:ignore WordPress.Security.EscapeOutput -- Teile oben einzeln escaped. ?></p>
+<p class="wfs-filter has-small-font-size"><?php echo implode( ' ', $links ); // phpcs:ignore WordPress.Security.EscapeOutput -- oben escaped ?></p>
 <!-- /wp:paragraph -->

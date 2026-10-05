@@ -6,7 +6,7 @@
  * Block Types: core/post-content
  * Post Types: page
  * Viewport Width: 1400
- * Description: Alles auf einer Seite mit Sprungmarken – für kleine Projekte. Die Navigation dann auf #buero, #leistungen und #kontakt zeigen lassen.
+ * Description: Onepager mit Sprungmarken. Navigation dann auf #buero, #leistungen, #kontakt setzen.
  */
 ?>
 <!-- wp:pattern {"slug":"webfire-starter/hero"} /-->

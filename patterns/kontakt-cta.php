@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Kontakt – Aufforderung
+ * Title: Kontakt-Aufforderung
  * Slug: webfire-starter/kontakt-cta
  * Categories: webfire, call-to-action
  * Keywords: kontakt, cta, anfrage

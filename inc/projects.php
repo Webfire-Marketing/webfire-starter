@@ -1,13 +1,9 @@
 <?php
 /**
- * Inhaltstyp „Projekte“ für Referenzen und Portfolios.
+ * CPT projekt + Taxonomie leistung.
+ * Meta projekt_ort / projekt_jahr werden per Block Bindings ausgegeben (WP 6.5+).
  *
- * Ort und Jahr liegen als registrierte Meta-Felder vor und werden in den Templates per
- * Block Bindings (WordPress 6.5+) ausgegeben – ganz ohne ACF oder Shortcodes. Die Leistung
- * ist eine Taxonomie, damit sich Projekte danach filtern lassen (/projekte/leistung/neubau/).
- *
- * Hinweis: Inhaltstypen gehören bei Kundenprojekten eigentlich in ein Plugin, damit Inhalte
- * einen Theme-Wechsel überleben. Für dieses Starter-Theme bleibt alles bewusst an einem Ort.
+ * TODO bei Kundenprojekten: CPTs in ein Plugin auslagern, sonst sind die Inhalte beim Theme-Wechsel weg.
  *
  * @package WebfireStarter
  */
@@ -25,7 +21,7 @@ add_action( 'init', __NAMESPACE__ . '\\register' );
 add_action( 'after_switch_theme', 'flush_rewrite_rules' );
 
 function register(): void {
-	// Taxonomie zuerst, damit ihre Permalinks vor den Projekt-Permalinks greifen.
+	// vor dem CPT registrieren, sonst greifen die Rewrite-Regeln von projekt zuerst
 	register_taxonomy(
 		TAXONOMY,
 		POST_TYPE,

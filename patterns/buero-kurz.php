@@ -1,11 +1,11 @@
 <?php
 /**
- * Title: Büro – Kurzvorstellung
+ * Title: Büro kurz
  * Slug: webfire-starter/buero-kurz
  * Categories: webfire, about
  * Keywords: über uns, büro, team
  * Viewport Width: 1400
- * Description: Bild und kurzer Text mit Link auf die Büro-Seite – für die Startseite.
+ * Description: Bild, kurzer Text, Link zur Büro-Seite.
  */
 ?>
 <!-- wp:group {"align":"full","backgroundColor":"base-2","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained","contentSize":"1320px"}} -->

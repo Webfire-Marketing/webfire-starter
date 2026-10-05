@@ -1,10 +1,7 @@
 <?php
 /**
- * Inhaltstyp „Team“ für die Büro-Seite.
- *
- * Name = Titel, Foto = Beitragsbild, Rolle = Meta-Feld (per Block Binding ausgegeben).
- * Die Reihenfolge steuert das Feld „Reihenfolge“ (menu_order). Einzelseiten gibt es nicht:
- * wer eine aufruft, landet auf der Büro-Seite.
+ * CPT team: Name = Titel, Foto = Beitragsbild, Rolle = Meta team_rolle.
+ * Sortierung über menu_order. Einzelseiten leiten auf /buero/ um.
  *
  * @package WebfireStarter
  */
@@ -31,7 +28,7 @@ function register(): void {
 				'edit_item'     => __( 'Person bearbeiten', 'webfire-starter' ),
 				'all_items'     => __( 'Alle Personen', 'webfire-starter' ),
 			),
-			// Muss öffentlich sein, damit der Query-Loop-Block den Typ abfragen darf.
+			// public nötig, sonst ignoriert der Query-Loop den Typ
 			'public'        => true,
 			'has_archive'   => false,
 			'rewrite'       => array( 'slug' => 'team' ),

@@ -14,6 +14,6 @@
 .wf-form__submit { margin: 0.5rem 0 0; }
 .wf-form__hp { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-/* Auf dunklem Hintergrund den Button umkehren. */
+/* dunkler Hintergrund */
 .has-contrast-background-color .wf-form .wp-element-button { background: var(--wp--preset--color--base); color: var(--wp--preset--color--contrast); }
 .has-contrast-background-color .wf-form .wp-element-button:hover { background: var(--wp--preset--color--base-2); }
