@@ -2,8 +2,9 @@
 /**
  * Inhaltstyp „Projekte“ für Referenzen und Portfolios.
  *
- * Ort, Jahr und Leistung liegen als registrierte Meta-Felder vor und werden in den
- * Templates per Block Bindings (WordPress 6.5+) ausgegeben – ganz ohne ACF oder Shortcodes.
+ * Ort und Jahr liegen als registrierte Meta-Felder vor und werden in den Templates per
+ * Block Bindings (WordPress 6.5+) ausgegeben – ganz ohne ACF oder Shortcodes. Die Leistung
+ * ist eine Taxonomie, damit sich Projekte danach filtern lassen (/projekte/leistung/neubau/).
  *
  * Hinweis: Inhaltstypen gehören bei Kundenprojekten eigentlich in ein Plugin, damit Inhalte
  * einen Theme-Wechsel überleben. Für dieses Starter-Theme bleibt alles bewusst an einem Ort.
@@ -18,11 +19,31 @@ namespace WebfireStarter\Projects;
 defined( 'ABSPATH' ) || exit;
 
 const POST_TYPE = 'projekt';
+const TAXONOMY  = 'leistung';
 
 add_action( 'init', __NAMESPACE__ . '\\register' );
 add_action( 'after_switch_theme', 'flush_rewrite_rules' );
 
 function register(): void {
+	// Taxonomie zuerst, damit ihre Permalinks vor den Projekt-Permalinks greifen.
+	register_taxonomy(
+		TAXONOMY,
+		POST_TYPE,
+		array(
+			'labels'            => array(
+				'name'          => __( 'Leistungen', 'webfire-starter' ),
+				'singular_name' => __( 'Leistung', 'webfire-starter' ),
+				'all_items'     => __( 'Alle Leistungen', 'webfire-starter' ),
+				'add_new_item'  => __( 'Neue Leistung', 'webfire-starter' ),
+			),
+			'hierarchical'      => true,
+			'public'            => true,
+			'show_in_rest'      => true,
+			'show_admin_column' => true,
+			'rewrite'           => array( 'slug' => 'projekte/leistung' ),
+		)
+	);
+
 	register_post_type(
 		POST_TYPE,
 		array(
@@ -44,9 +65,8 @@ function register(): void {
 	);
 
 	$fields = array(
-		'projekt_ort'      => __( 'Ort', 'webfire-starter' ),
-		'projekt_jahr'     => __( 'Jahr', 'webfire-starter' ),
-		'projekt_leistung' => __( 'Leistung', 'webfire-starter' ),
+		'projekt_ort'  => __( 'Ort', 'webfire-starter' ),
+		'projekt_jahr' => __( 'Jahr', 'webfire-starter' ),
 	);
 
 	foreach ( $fields as $key => $label ) {

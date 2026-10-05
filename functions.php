@@ -19,3 +19,4 @@ require WEBFIRE_STARTER_DIR . '/inc/setup.php';
 require WEBFIRE_STARTER_DIR . '/inc/cleanup.php';
 require WEBFIRE_STARTER_DIR . '/inc/contact-form.php';
 require WEBFIRE_STARTER_DIR . '/inc/projects.php';
+require WEBFIRE_STARTER_DIR . '/inc/team.php';
