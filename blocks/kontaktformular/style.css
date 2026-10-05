@@ -1,0 +1,15 @@
+.wf-form { display: grid; gap: 1rem; max-width: 40rem; }
+.wf-form__row { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.wf-form__field { display: grid; gap: 0.35rem; margin: 0; }
+.wf-form label { font-size: var(--wp--preset--font-size--small); font-weight: 600; }
+.wf-form input[type="text"], .wf-form input[type="email"], .wf-form input[type="tel"], .wf-form textarea {
+	box-sizing: border-box; width: 100%; padding: 0.75rem 0.9rem; font: inherit; color: inherit;
+	background: #fff; border: 1px solid var(--wp--preset--color--line); border-radius: 4px;
+}
+.wf-form input:focus-visible, .wf-form textarea:focus-visible { outline: 2px solid var(--wp--preset--color--accent); outline-offset: 1px; border-color: transparent; }
+.wf-form__consent { display: flex; gap: 0.6rem; align-items: flex-start; margin: 0; }
+.wf-form__consent input { margin-top: 0.3rem; flex: none; }
+.wf-form__consent label { font-weight: 400; }
+.wf-form__notice { margin: 0; padding: 0.8rem 1rem; border-left: 3px solid var(--wp--preset--color--accent); background: var(--wp--preset--color--surface); }
+.wf-form__submit { margin: 0; }
+.wf-form__hp { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
